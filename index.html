@@ -16,6 +16,47 @@
         }
 
         /* Navigasi */
+        .dark-mode-btn {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        .dark-mode-btn:hover {
+            background-color: darkred;
+        }
+        
+        /* Mode Gelap */
+        .dark-mode {
+            background-color: #1f2937; /* Abu tua */
+            color: #f3f4f6;
+        }
+        
+        .dark-mode .navbar {
+            background-color: #111827; /* Hitam kebiruan */
+        }
+        
+        .dark-mode .navbar a {
+            color: #f3f4f6;
+        }
+        
+        .dark-mode .container {
+            background-color: #374151; /* Abu-abu gelap */
+            color: #f3f4f6;
+        }
+        
+        .dark-mode .dark-mode-btn {
+            background-color: #4ade80; /* Hijau neon */
+            color: black;
+        }
+        
+        .dark-mode .dark-mode-btn:hover {
+            background-color: #22c55e;
+        }
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -246,6 +287,31 @@
             let url = `https://wa.me/${nomorWA}?text=Nama:%20${encodeURIComponent(nama)}%0AEmail:%20${encodeURIComponent(email)}%0APesan:%20${encodeURIComponent(pesan)}`;
             window.open(url, '_blank');
         }
+        function toggleMode() {
+            let body = document.body;
+            let modeToggleBtn = document.querySelector(".mode-toggle");
+    
+            body.classList.toggle("dark-mode");
+    
+            if (body.classList.contains("dark-mode")) {
+                localStorage.setItem("theme", "dark");
+                modeToggleBtn.textContent = "Mode Terang";
+            } else {
+                localStorage.setItem("theme", "light");
+                modeToggleBtn.textContent = "Mode Gelap";
+            }
+        }
+    
+        window.onload = function() {
+            let body = document.body;
+            let modeToggleBtn = document.querySelector(".mode-toggle");
+    
+            if (localStorage.getItem("theme") === "dark") {
+                body.classList.add("dark-mode");
+                modeToggleBtn.textContent = "Mode Terang";
+            }
+        };
     </script>
+
 </body>
 </html>
